@@ -19,3 +19,5 @@ php_fpm_pool_defaults:
 php_fpm_default_pool:
   delete: yes
   name: www.conf
+
+php_fpm_pools_directory: "/etc/php5/fpm/pool.d"
