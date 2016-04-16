@@ -1,22 +1,43 @@
-Role Name
+Ansible Role: PHP-FPM-POOLS
 =========
 
-A brief description of the role goes here.
+Ansible role for PHP-FPM pools configuration.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Must be running PHP-FPM
+A restart php-fpm handler is used to restart PHP-FPM after configuration changes and must be defined in your playbook
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+- php_fpm_pools: List of php-fpm pools
+  - name: Name of php-fpm pool file
+    user: Username for pool's processes
+    group: Groupname for pool's www-data
+    listen: Port for php-fpm
+    Othen directives - List of pool directives http://php.net/manual/en/install.fpm.configuration.php
+
+
+- php_fpm_pool_defaults: List of default pool directives applied for every php-fpm pool
+  - pm: dynamic
+  - pm.max_children: 5
+  - pm.start_servers: 2
+  - pm.min_spare_servers: 1
+  - pm.max_spare_servers: 3
+  - pm.status_path: /status
+
+- php_fpm_default_pool:
+  - delete: yes - Delete default php-fpm pool.
+  - name: www.conf - Default name for php-fpm pool.
+
+php_fpm_pools_directory: "/etc/php5/fpm/pool.d" - php-fpm pool directory path
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None
 
 Example Playbook
 ----------------
@@ -25,7 +46,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: initlabopen.php-fpm-pools}
 
 License
 -------
@@ -35,5 +56,6 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Roman Agabekov <r.agabekov@gmail.com>
+
 # ansible-role-php-fpm-pools

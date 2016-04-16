@@ -19,4 +19,3 @@ galaxy_info:
   categories:
   - development
   - web
-dependencies: [geerlingguy.php]
