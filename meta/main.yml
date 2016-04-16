@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Roman Agabekov
-  description: Manage php-fpm pools for geerlingguy.php role for Debain/Ubuntu/Centos
+  description: Role for configuration php-fpm pools for Debain/Ubuntu/Centos
   company: Initlab LLC
   license: license (BSD, MIT)
   min_ansible_version: 1.9
