@@ -16,10 +16,10 @@ galaxy_info:
   - name: Debian
     versions:
     - all
-  dependencies:[]
   galaxy_tags:
   - development
   - web
   categories:
   - development
   - web
+dependencies: []
