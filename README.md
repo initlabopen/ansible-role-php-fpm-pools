@@ -42,11 +42,31 @@ None
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+Example you can see in **example** folder
 
-    - hosts: servers
+    - hosts: localhost
+      vars_files:
+        - vars/main.yml
       roles:
-         - { role: initlabopen.php-fpm-pools}
+        - geerlingguy.php
+        - initlabopen.php-fpm-pools
+
+*Inside `vars/main.yml`*:
+
+    php_fpm_pools:
+     - name: testsite
+       user: www-data
+       group: www-data
+       listen: 8000
+       chdir: /
+
+    php_fpm_pool_defaults:
+      pm: dynamic
+      pm.max_children: 150
+      pm.start_servers: 20
+      pm.min_spare_servers: 1
+      pm.max_spare_servers: 30
+      pm.status_path: /status
 
 License
 -------
