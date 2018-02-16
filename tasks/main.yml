@@ -24,3 +24,11 @@
   register: result
   changed_when: "result.rc != 0"
   tags: [configuration,php,fpm]
+
+- name: Ensure php-fpm is started and enabled at boot (if configured, Debian).
+  service:
+    name: "{{ php_fpm_pools_daemon }}"
+    state: started
+    enabled: yes
+    use: service
+  when: ansible_distribution == "Debian"
