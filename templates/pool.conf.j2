@@ -3,11 +3,11 @@
 
 [{{ item.name }}]
 ; Defaults
-{% for directive, value in php_fpm_pool_defaults.iteritems() %}
+{% for directive, value in php_fpm_pool_defaults.items() | list %}
   {{ directive }} = {{ value }}
 {% endfor %}
 
 ; Pool custom directives
-{% for directive, value in item.iteritems() if directive != "name" %}
+{% for directive, value in item.items() | list if directive != "name" %}
   {{ directive }} = {{ value }}
 {% endfor %}
